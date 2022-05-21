@@ -17,3 +17,6 @@ para crear el proyecto debemos crear una carpeta en donde ubicaremos el código 
 ```cmd
 c:\ruta_carpeta_codigo_fuente> dotnet new mvc
 ```
+
+## Estrategia de desarrollo
+El proyecto será desarrollado bajo el esquema de *Coder First*, el cual consiste en desarrollar los modelos y relaciones desde el código fuente y migrarlos posteriormente a la base de datos a través de *Entity Framework*
