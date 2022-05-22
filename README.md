@@ -28,3 +28,11 @@ NOTA: el comando anterior deja a la terminal en espera, es importante cancelar l
 ## Estrategia de desarrollo
 El proyecto será desarrollado bajo el esquema de *Coder First*, el cual consiste en desarrollar los modelos y relaciones desde el código fuente y migrarlos posteriormente a la base de datos a través de *Entity Framework*
 
+## Configuracion inicial enrutado http - https
+La plantilla por defecto esta configurado para correr con el protocolo HTTPS, para evitar inconvenientes y mensajes de warning se recomienda en ambiente local modificar el protocolo de comunicación, eliminando la ruta https y comentando la redirección forzada a https
+
+Eliminar ruta https
+![Modificar enrutado https](/Documentacion/ConfiguracionInicio.png)
+
+Comentar redirección forzada
+![Modificar enrutado https](/Documentacion/redireccionHttps.png)
