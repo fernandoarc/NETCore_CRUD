@@ -45,3 +45,8 @@ Para implementar Entity Framework desde el código, se deben tener en cuenta las
 - La librería a agregar se llama *EntityFrameworkCore*.
 - La versión a agregar es la *v3.1.1*.
 - una vez referenciada la librería se deben restaurar las dependencias.
+
+Una vez agregadas las referencias indicadas previamente, se debe generar la cadena de conexión en el archivo *appsettings.json*, y posterior a eso se debe agregar la dependencia de *EntityFrameworkCore.SqlServer*, versión 3.1.1 y restaurar nuevamente las dependencias
+
+IMPORTANTE: las versiones de Entity Framework deben ser iguales a la versión de .NetCore con la que se está trabajando.
+

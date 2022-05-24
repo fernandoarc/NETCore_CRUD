@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using CRUD_NetCore.Models.BD;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +26,7 @@ namespace CRUD_NetCore
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<TurnosContext>(opciones => opciones.UseSqlServer(Configuration.GetConnectionString("TurnosContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
