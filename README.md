@@ -36,3 +36,12 @@ Eliminar ruta https
 
 Comentar redirección forzada
 ![Modificar enrutado https](/Documentacion/redireccionHttps.png)
+
+## Implementación Entity Framework
+
+Para implementar Entity Framework desde el código, se deben tener en cuenta las siguientes consideraciones:
+
+- Agregar la dependencia de Entity Framework al proyecto a través de Nugget Package Manager.
+- La librería a agregar se llama *EntityFrameworkCore*.
+- La versión a agregar es la *v3.1.1*.
+- una vez referenciada la librería se deben restaurar las dependencias.
