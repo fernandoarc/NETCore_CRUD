@@ -1,3 +1,4 @@
+using System.Linq;
 using CRUD_NetCore.Models.BD;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,7 +14,7 @@ namespace CRUD_NetCore.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(_context.Especialidad.ToList());
         }
     }
 }

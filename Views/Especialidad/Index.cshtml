@@ -1,3 +1,4 @@
+@model IEnumerable<CRUD_NetCore.Models.Especialidad>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,17 +8,19 @@
         <table>
             <thead>
                 <tr>
-                    <th>Descripcion</th>
+                    <th>@Html.DisplayNameFor(model => model.Descripcion)</th>
                 </tr>
             </thead>
             <tbody>
                 @* datos rescatados desde bd *@
-                <tr>
-                    <td>Traumatologo</td>
-                </tr>
-                <tr>
-                    <td>Cardiologo</td>
-                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Descripcion)</td>
+                        <td>@item.IdEspecialidad</td>
+                        <td>@item.Descripcion</td>
+                    </tr>
+                }
             </tbody>
         </table>
     </body>
