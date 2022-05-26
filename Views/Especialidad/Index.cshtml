@@ -1,27 +1,18 @@
 @model IEnumerable<CRUD_NetCore.Models.Especialidad>
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Especialidades</title>
-    </head>
-    <body>
-        <table>
-            <thead>
-                <tr>
-                    <th>@Html.DisplayNameFor(model => model.Descripcion)</th>
-                </tr>
-            </thead>
-            <tbody>
-                @* datos rescatados desde bd *@
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@Html.DisplayFor(modelItem => item.Descripcion)</td>
-                        <td>@item.IdEspecialidad</td>
-                        <td>@item.Descripcion</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </body>
-</html>
+<table>
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Descripcion)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @* datos rescatados desde bd *@
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.IdEspecialidad</td>
+                <td>@item.Descripcion</td>
+            </tr>
+        }
+    </tbody>
+</table>
