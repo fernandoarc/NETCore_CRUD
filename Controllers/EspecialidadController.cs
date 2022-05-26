@@ -29,7 +29,7 @@ namespace CRUD_NetCore.Controllers
             {
                 return NotFound();
             }
-            return View();
+            return View(especialidad);
         }
 
         [HttpPost]
@@ -45,7 +45,7 @@ namespace CRUD_NetCore.Controllers
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            return View();
+            return View(especialidad);
         }
     }
 }
