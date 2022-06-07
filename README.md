@@ -30,7 +30,7 @@ NOTA: el comando anterior deja a la terminal en espera, es importante cancelar l
 
 ## Estrategia de desarrollo
 ---
-El proyecto será desarrollado bajo el esquema de *Coder First*, el cual consiste en desarrollar los modelos y relaciones desde el código fuente y migrarlos posteriormente a la base de datos a través de *Entity Framework*
+El proyecto será desarrollado bajo el esquema de *Code First*, el cual consiste en desarrollar los modelos y relaciones desde el código fuente y migrarlos posteriormente a la base de datos a través de *Entity Framework*
 
 ## Configuracion inicial enrutado http - https
 ---
@@ -70,7 +70,7 @@ Este punto consiste en habilitar el proceso de modelado y migración de las clas
 Para lograr dicho objetivo se deben tener en cuenta:
 - Ejecutar el siguiente comando desde la terminal:
 ```cmd
-dotnet tool install --global dotnet-ef 3.1
+dotnet tool install --global dotnet-ef --version 3.1.1
 ```
 - Agregar dependencia *EntityFrameworkCore.Desing, versión 3.1.0*  a través de Nugget Package Manager.
 - Restaurar nuevamente las dependencias
