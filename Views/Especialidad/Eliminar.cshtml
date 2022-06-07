@@ -1,0 +1,15 @@
+@model CRUD_NetCore.Models.Especialidad
+<h1>¿Est&aacute; seguro de eliminar el registro?</h1>
+<div>
+    <dl>
+        <dt>@Html.DisplayNameFor(modelo => modelo.Descripcion)</dt>
+        <dd>@Html.DisplayFor(modelo => modelo.Descripcion)</dd>
+    </dl>
+    <form asp-action="Eliminar">
+        <input type="hidden" asp-for="IdEspecialidad" />
+        <input type="submit" value="Eliminar">
+    </form>
+    <div>
+        <a asp-action="Index">Volver</a>
+    </div>
+</div>
