@@ -25,6 +25,8 @@ Para iniciar el proyecto se debe ejecutar el siguiente comando desde la terminal
 
 ```cmd
 dotnet run
+---
+dotnet watch run
 ```
 NOTA: el comando anterior deja a la terminal en espera, es importante cancelar la ejecución de la linea anterior una vez que ya no se requiera (para cancelar **ctrl+c**)
 

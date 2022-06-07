@@ -29,7 +29,7 @@ namespace CRUD_NetCore.Controllers
             {
                 return NotFound();
             }
-            return View();
+            return View(especialidad);
         }
 
         [HttpPost]
@@ -45,7 +45,30 @@ namespace CRUD_NetCore.Controllers
                 _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            return View();
+            return View(especialidad);
+        }
+
+        public IActionResult Eliminar (int? Id)
+        {
+            if (Id == null)
+            {
+                return NotFound();
+            }
+            var especialidad = _context.Especialidad.Find(Id);
+            if (especialidad == null)
+            {
+                return NotFound();
+            }
+            return View(especialidad);
+        }
+
+        [HttpPost]
+        public IActionResult Eliminar(int Id)
+        {
+            var especialidad = _context.Especialidad.Where(e => e.IdEspecialidad == Id).FirstOrDefault();
+            _context.Especialidad.Remove(especialidad);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
         }
     }
 }
