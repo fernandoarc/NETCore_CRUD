@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using CRUD_NetCore.Models.BD;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using NETCore_CRUD.Models;
 
 namespace NETCore_CRUD.Controllers
 {
@@ -32,6 +33,22 @@ namespace NETCore_CRUD.Controllers
                 return NotFound();
             }
             return View(paciente);
+        }
+
+        public IActionResult Crear()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Crear([Bind("IdPaciente, Nombre, Apellido, Direccion, Telefono, Email")]Paciente paciente)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(paciente);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
         }
     }
 }
