@@ -40,6 +40,8 @@ namespace NETCore_CRUD.Controllers
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]//validar que los datos provengan desde el formulario y no desde la url del navegador
         public async Task<IActionResult> Crear([Bind("IdPaciente, Nombre, Apellido, Direccion, Telefono, Email")]Paciente paciente)
         {
             if (ModelState.IsValid)
@@ -66,9 +68,10 @@ namespace NETCore_CRUD.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Editar(int? IdPaciente, [Bind("IdPaciente, Nombre, Apellido, Direccion, Telefono, Email")]Paciente paciente)
         {
-            if (IdPaciente == null)
+            if (IdPaciente == null || IdPaciente != paciente.IdPaciente)
             {
                 return NotFound();
             }
@@ -95,10 +98,19 @@ namespace NETCore_CRUD.Controllers
             return View(paciente);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Eliminar(int IdPaciente)
+        [HttpPost, ActionName("Eliminar")]//aplica un alias para poder sobrecargar metodos
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EliminarConfirmacion(int? IdPaciente)
         {
+            if (IdPaciente == null)
+            {
+                return NotFound();
+            }
             var paciente = await _context.Paciente.FindAsync(IdPaciente);
+            if (paciente == null)
+            {
+                return NotFound();
+            }
             _context.Paciente.Remove(paciente);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
