@@ -2,6 +2,8 @@ using CRUD_NetCore.Models;
 using System.Linq;
 using CRUD_NetCore.Models.BD;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace CRUD_NetCore.Controllers
 {
@@ -13,18 +15,18 @@ namespace CRUD_NetCore.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(_context.Especialidad.ToList());
+            return View(await _context.Especialidad.ToListAsync());
         }
 
-        public IActionResult Editar(int? Id)
+        public async Task<IActionResult> Editar(int? Id)
         {
             if (Id == null)
             {
                 return NotFound();
             }
-            var especialidad = _context.Especialidad.Where(e => e.IdEspecialidad == Id).FirstOrDefault();
+            var especialidad = await _context.Especialidad.Where(e => e.IdEspecialidad == Id).FirstOrDefaultAsync();
             if(especialidad == null)
             {
                 return NotFound();
@@ -33,7 +35,7 @@ namespace CRUD_NetCore.Controllers
         }
 
         [HttpPost]
-        public IActionResult Editar(int? id, [Bind("IdEspecialidad,Descripcion")] Especialidad especialidad)
+        public async Task<IActionResult> Editar(int? id, [Bind("IdEspecialidad,Descripcion")] Especialidad especialidad)
         {
             if (id != especialidad.IdEspecialidad)
             {
@@ -42,19 +44,19 @@ namespace CRUD_NetCore.Controllers
             if (ModelState.IsValid)
             {
                 _context.Update(especialidad);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(especialidad);
         }
 
-        public IActionResult Eliminar (int? Id)
+        public async Task<IActionResult> Eliminar (int? Id)
         {
             if (Id == null)
             {
                 return NotFound();
             }
-            var especialidad = _context.Especialidad.Find(Id);
+            var especialidad = await _context.Especialidad.FindAsync(Id);
             if (especialidad == null)
             {
                 return NotFound();
@@ -63,11 +65,11 @@ namespace CRUD_NetCore.Controllers
         }
 
         [HttpPost]
-        public IActionResult Eliminar(int Id)
+        public async Task<IActionResult> Eliminar(int Id)
         {
-            var especialidad = _context.Especialidad.Where(e => e.IdEspecialidad == Id).FirstOrDefault();
+            var especialidad = await _context.Especialidad.Where(e => e.IdEspecialidad == Id).FirstOrDefaultAsync();
             _context.Especialidad.Remove(especialidad);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
     }
