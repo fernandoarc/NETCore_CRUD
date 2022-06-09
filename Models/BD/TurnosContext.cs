@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using NETCore_CRUD.Models;
+
 namespace CRUD_NetCore.Models.BD
 {
     public class TurnosContext : DbContext
@@ -8,6 +10,7 @@ namespace CRUD_NetCore.Models.BD
 
         }
         public DbSet<Especialidad> Especialidad { get; set; }
+        public DbSet<Paciente> Paciente { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -19,6 +22,28 @@ namespace CRUD_NetCore.Models.BD
                     .IsRequired()//campo obligatorio
                     .HasMaxLength(200)//largo maximo
                     .IsUnicode(false);//campo unicode
+            });
+            modelBuilder.Entity<Paciente>(entidad => {
+                entidad.ToTable("Paciente");
+                entidad.HasKey(p => p.IdPaciente);
+                entidad.Property(p => p.Nombre)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+                entidad.Property(p => p.Apellido)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+                entidad.Property(p => p.Direccion)
+                    .IsRequired()
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
+                entidad.Property(p => p.Email)
+                    .IsRequired()
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
+                entidad.Property(p => p.Telefono)
+                    .IsRequired();
             });
         }
     }
