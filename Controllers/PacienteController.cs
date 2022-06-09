@@ -65,6 +65,7 @@ namespace NETCore_CRUD.Controllers
             return View(paciente);
         }
 
+        [HttpPost]
         public async Task<IActionResult> Editar(int? IdPaciente, [Bind("IdPaciente, Nombre, Apellido, Direccion, Telefono, Email")]Paciente paciente)
         {
             if (IdPaciente == null)
@@ -78,6 +79,29 @@ namespace NETCore_CRUD.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(paciente);
+        }
+
+        public async Task<IActionResult> Eliminar(int? IdPaciente)
+        {
+            if (IdPaciente == null)
+            {
+                return NotFound();
+            }
+            var paciente = await _context.Paciente.FindAsync(IdPaciente);
+            if (paciente == null)
+            {
+                return NotFound();
+            }
+            return View(paciente);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Eliminar(int IdPaciente)
+        {
+            var paciente = await _context.Paciente.FindAsync(IdPaciente);
+            _context.Paciente.Remove(paciente);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }
