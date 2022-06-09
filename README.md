@@ -86,3 +86,14 @@ dotnet ef database update
 dotnet tool update --global dotnet-ef --version 3.1.1
 //importante, se debe actualizar la version en el csproj, según la version a actualizar
 ```
+- Para realizar una nueva migracion desde la herramienta migrations, para actualizar modelo en la base de datos, se deben ejecutar los sigueintes comandos:
+```cmd
+dotnet ef migrations add [nombre nueva migracion]
+
+///en caso que alguna de las tablas involucradas en el proceso 
+///ya tengan datos levantará un warning indicando que se podrian 
+///perder registros, en dicha situación si los cambios no 
+///representan problemas ejecutar siguiente comando
+
+dotnet ef database update
+```
