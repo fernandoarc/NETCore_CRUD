@@ -50,5 +50,34 @@ namespace NETCore_CRUD.Controllers
             }
             return View();
         }
+
+        public async Task<IActionResult> Editar(int? IdPaciente)
+        {
+            if (IdPaciente == null)
+            {
+                return NotFound();
+            }
+            var paciente = await _context.Paciente.FirstOrDefaultAsync(p => p.IdPaciente == IdPaciente);
+            if (paciente == null)
+            {
+                return NotFound();
+            }
+            return View(paciente);
+        }
+
+        public async Task<IActionResult> Editar(int? IdPaciente, [Bind("IdPaciente, Nombre, Apellido, Direccion, Telefono, Email")]Paciente paciente)
+        {
+            if (IdPaciente == null)
+            {
+                return NotFound();
+            }
+            if (ModelState.IsValid)
+            {
+                _context.Update(paciente);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(paciente);
+        }
     }
 }
