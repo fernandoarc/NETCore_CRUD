@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-namespace CRUD_NetCore.Models
+namespace NETCore_CRUD.Models
 {
     public class Especialidad
     {

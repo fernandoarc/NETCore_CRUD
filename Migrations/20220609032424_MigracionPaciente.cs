@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace CRUD_NetCore.Migrations
+namespace NETCore_CRUD.Migrations
 {
     public partial class MigracionPaciente : Migration
     {
