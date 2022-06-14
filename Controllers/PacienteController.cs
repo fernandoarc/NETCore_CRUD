@@ -20,14 +20,14 @@ namespace NETCore_CRUD.Controllers
             return View(await _context.Paciente.ToListAsync());    
         }
 
-        public async Task<IActionResult> Detalle(int? IdPaciente)
+        public async Task<IActionResult> Detalle(int? Id)
         {
-            if (IdPaciente == null)
+            if (Id == null)
             {
                 return NotFound();
             }
 
-            var paciente = await _context.Paciente.FindAsync(IdPaciente);
+            var paciente = await _context.Paciente.FirstOrDefaultAsync(p => p.IdPaciente == Id);
             if (paciente == null)
             {
                 return NotFound();
@@ -53,13 +53,13 @@ namespace NETCore_CRUD.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Editar(int? IdPaciente)
+        public async Task<IActionResult> Editar(int? Id)
         {
-            if (IdPaciente == null)
+            if (Id == null)
             {
                 return NotFound();
             }
-            var paciente = await _context.Paciente.FirstOrDefaultAsync(p => p.IdPaciente == IdPaciente);
+            var paciente = await _context.Paciente.FirstOrDefaultAsync(p => p.IdPaciente == Id);
             if (paciente == null)
             {
                 return NotFound();
@@ -69,9 +69,9 @@ namespace NETCore_CRUD.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Editar(int? IdPaciente, [Bind("IdPaciente, Nombre, Apellido, Direccion, Telefono, Email")]Paciente paciente)
+        public async Task<IActionResult> Editar(int? Id, [Bind("IdPaciente, Nombre, Apellido, Direccion, Telefono, Email")]Paciente paciente)
         {
-            if (IdPaciente == null || IdPaciente != paciente.IdPaciente)
+            if (Id == null || Id != paciente.IdPaciente)
             {
                 return NotFound();
             }
@@ -84,13 +84,13 @@ namespace NETCore_CRUD.Controllers
             return View(paciente);
         }
 
-        public async Task<IActionResult> Eliminar(int? IdPaciente)
+        public async Task<IActionResult> Eliminar(int? Id)
         {
-            if (IdPaciente == null)
+            if (Id == null)
             {
                 return NotFound();
             }
-            var paciente = await _context.Paciente.FindAsync(IdPaciente);
+            var paciente = await _context.Paciente.FindAsync(Id);
             if (paciente == null)
             {
                 return NotFound();
@@ -100,13 +100,13 @@ namespace NETCore_CRUD.Controllers
 
         [HttpPost, ActionName("Eliminar")]//aplica un alias para poder sobrecargar metodos
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EliminarConfirmacion(int? IdPaciente)
+        public async Task<IActionResult> EliminarConfirmacion(int? Id)
         {
-            if (IdPaciente == null)
+            if (Id == null)
             {
                 return NotFound();
             }
-            var paciente = await _context.Paciente.FindAsync(IdPaciente);
+            var paciente = await _context.Paciente.FindAsync(Id);
             if (paciente == null)
             {
                 return NotFound();
