@@ -1,0 +1,36 @@
+@model IEnumerable<NETCore_CRUD.Models.Paciente>
+
+<p>
+    <a asp-action="Crear">Nuevo Paciente</a>
+</p>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(modelo => modelo.Nombre)</th>
+                <th>@Html.DisplayNameFor(modelo => modelo.Apellido)</th>
+                <th>@Html.DisplayNameFor(modelo => modelo.Direccion)</th>
+                <th>@Html.DisplayNameFor(modelo => modelo.Telefono)</th>
+                <th>@Html.DisplayNameFor(modelo => modelo.Email)</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modeloItem => item.Nombre)</td>
+                    <td>@Html.DisplayFor(modeloItem => item.Apellido)</td>
+                    <td>@Html.DisplayFor(modeloItem => item.Direccion)</td>
+                    <td>@Html.DisplayFor(modeloItem => item.Telefono)</td>
+                    <td>@Html.DisplayFor(modeloItem => item.Email)</td>
+                    <td>
+                        <a asp-action="Editar" asp-route-id="@item.IdPaciente">Editar</a>
+                        <a asp-action="Detalle" asp-route-id="@item.IdPaciente">Detalle</a>
+                        <a asp-action="Eliminar" asp-route-id="@item.IdPaciente">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
