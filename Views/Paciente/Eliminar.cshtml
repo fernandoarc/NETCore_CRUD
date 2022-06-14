@@ -1,0 +1,26 @@
+@model NETCore_CRUD.Models.Paciente
+
+<h1>¿Est&aacute; seguro de elimiar el registro?</h1>
+<div>
+    <dl>
+        <dt>@Html.DisplayNameFor(m => m.Nombre)</dt>
+        <dd>@Html.DisplayFor(m => m.Nombre)</dd>
+
+        <dt>@Html.DisplayNameFor(m => m.Apellido)</dt>
+        <dd>@Html.DisplayFor(m => m.Apellido)</dd>
+
+        <dt>@Html.DisplayNameFor(m => m.Direccion)</dt>
+        <dd>@Html.DisplayFor(m => m.Direccion)</dd>
+
+        <dt>@Html.DisplayNameFor(m => m.Telefono)</dt>
+        <dd>@Html.DisplayFor(m => m.Telefono)</dd>
+
+        <dt>@Html.DisplayNameFor(m => m.Email)</dt>
+        <dd>@Html.DisplayFor(m => m.Email)</dd>
+    </dl>
+    <form asp-action="Eliminar">
+        <input type="hidden" asp-for="IdPaciente">
+        <input type="submit" value="Eliminar"> |
+        <a asp-action="Index">Volver</a>
+    </form>
+</div>
