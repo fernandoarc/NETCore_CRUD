@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace CRUD_NetCore
+namespace NETCore_CRUD
 {
     public class Program
     {

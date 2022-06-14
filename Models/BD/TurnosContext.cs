@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using NETCore_CRUD.Models;
 
-namespace CRUD_NetCore.Models.BD
+namespace NETCore_CRUD.Models.BD
 {
     public class TurnosContext : DbContext
     {

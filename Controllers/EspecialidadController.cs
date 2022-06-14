@@ -1,11 +1,11 @@
-using CRUD_NetCore.Models;
+using NETCore_CRUD.Models;
 using System.Linq;
-using CRUD_NetCore.Models.BD;
+using NETCore_CRUD.Models.BD;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
-namespace CRUD_NetCore.Controllers
+namespace NETCore_CRUD.Controllers
 {
     public class EspecialidadController : Controller
     {

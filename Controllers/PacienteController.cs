@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using CRUD_NetCore.Models.BD;
+using NETCore_CRUD.Models.BD;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using NETCore_CRUD.Models;

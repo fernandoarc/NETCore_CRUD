@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using CRUD_NetCore.Models.BD;
+using NETCore_CRUD.Models.BD;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace CRUD_NetCore
+namespace NETCore_CRUD
 {
     public class Startup
     {
