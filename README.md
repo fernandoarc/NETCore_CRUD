@@ -97,3 +97,27 @@ dotnet ef migrations add [nombre nueva migracion]
 
 dotnet ef database update
 ```
+
+### Habilitar VisualStudio.Web.CodeGeneration.Design
+---
+Habilitar la herramienta para generar el proceso de scaffolding
+
+- Agregar dependencia *Microsoft.VisualStudio.Web.CodeGeneration.Design, versión 3.1.1*  a través de Nugget Package Manager (debe coincidir con la versión de .net core a trabajar).
+- Restaurar nuevamente las dependencias
+- para generar código a traves de la herramienta de scaffolding, se debe hacer uso de los siguientes comandos en la terminal del proyecto
+```cmd
+//los datos entre corchetes "[]" deben estar relacionados a las clases desarrolladas en la aplicacion
+//-name [nombre del controlador a generar]
+//-actions 
+//-m [Nombre del modelo a tener en cuenta como referencia]
+//-dc [DataContext a tener como referencia]
+//-outDir [directorio de salida (carpeta donde se generará el controlador)]
+//ejemplo:
+dotnet aspnet -codegenerator controller -name [MedicoController] -actions -m [Medico] -dc [TurnosContext] -outDir [Controllers]
+
+
+---
+//en caso de presentar errores correr el siguiente comando
+dotnet tool install --global dotnet-aspnet-codegenerator --version 3.1.1
+
+```

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using NETCore_CRUD.Models;
 
 namespace NETCore_CRUD.Models.BD
 {
@@ -10,7 +11,7 @@ namespace NETCore_CRUD.Models.BD
         }
         public DbSet<Especialidad> Especialidad { get; set; }
         public DbSet<Paciente> Paciente { get; set; }
-
+        public DbSet<Medico> Medico { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //configuraciones a implementar al momento de crear tabla en el sql server
@@ -45,5 +46,7 @@ namespace NETCore_CRUD.Models.BD
                     .IsRequired();
             });
         }
+
+        
     }
 }
