@@ -45,6 +45,36 @@ namespace NETCore_CRUD.Models.BD
                 entidad.Property(p => p.Telefono)
                     .IsRequired();
             });
+            modelBuilder.Entity<Medico>(medico => {
+                medico.ToTable("Medico");
+                medico.HasKey(m => m.IdMedico);
+                medico.Property(m => m.Nombre)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+                medico.Property(m => m.Apellido)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+                medico.Property(m => m.Direccion)
+                    .IsRequired()
+                    .HasMaxLength(250)
+                    .IsUnicode(false);
+                medico.Property(m => m.Telefono)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+                medico.Property(m => m.Email)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+                medico.Property(m => m.HorarioAtencionDesde)
+                    .IsRequired()
+                    .IsUnicode(false);
+                medico.Property(m => m.HorarioAtencionHasta)
+                    .IsRequired()
+                    .IsUnicode(false);
+            });
         }
 
         
