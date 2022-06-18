@@ -76,7 +76,7 @@ namespace NETCore_CRUD.Models.BD
                     .IsRequired()
                     .IsUnicode(false);
             });
-            modelBuilder.Entity<MedicoEspecialidad>().HasKey(me => new {me.IdMedico, me.IdEspecialidad});
+            modelBuilder.Entity<MedicoEspecialidad>().HasKey(me => new { me.IdMedico, me.IdEspecialidad });
             modelBuilder.Entity<MedicoEspecialidad>().HasOne(x => x.Medico)
                     .WithMany(p => p.MedicoEspecialidad)
                     .HasForeignKey(p => p.IdMedico);
