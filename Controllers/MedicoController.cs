@@ -46,6 +46,7 @@ namespace CRUD_NetCore.Controllers
         // GET: Medico/Create
         public IActionResult Create()
         {
+            ViewData["ListaEspecialidades"] = new SelectList(_context.Especialidad, "IdEspecialidad", "Descripcion");
             return View();
         }
 
@@ -54,12 +55,19 @@ namespace CRUD_NetCore.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdMedico,Nombre,Apellido,Direccion,Telefono,Email,HorarioAtencionDesde,HorarioAtencionHasta")] Medico medico)
+        public async Task<IActionResult> Create([Bind("IdMedico,Nombre,Apellido,Direccion,Telefono,Email,HorarioAtencionDesde,HorarioAtencionHasta")] Medico medico, int? IdEspecialidad)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(medico);
                 await _context.SaveChangesAsync();
+
+                var medicoEspecialidad = new MedicoEspecialidad();
+                medicoEspecialidad.IdMedico = medico.IdMedico;
+                medicoEspecialidad.IdEspecialidad = (int)IdEspecialidad;
+                _context.MedicoEspecialidad.Add(medicoEspecialidad);
+                await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
             return View(medico);
@@ -73,11 +81,12 @@ namespace CRUD_NetCore.Controllers
                 return NotFound();
             }
 
-            var medico = await _context.Medico.FindAsync(id);
+            var medico = await _context.Medico.Where(m => m.IdMedico == id).Include(me => me.MedicoEspecialidad).FirstOrDefaultAsync();
             if (medico == null)
             {
                 return NotFound();
             }
+            ViewData["ListaEspecialidades"] = new SelectList(_context.Especialidad, "IdEspecialidad", "Descripcion", medico.MedicoEspecialidad[0].IdEspecialidad);
             return View(medico);
         }
 
