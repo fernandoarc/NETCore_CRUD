@@ -34,7 +34,8 @@ namespace CRUD_NetCore.Controllers
             }
 
             var medico = await _context.Medico
-                .FirstOrDefaultAsync(m => m.IdMedico == id);
+                .Where(m => m.IdMedico == id).Include(x => x.MedicoEspecialidad)
+                .ThenInclude(y => y.Especialidad).FirstOrDefaultAsync();
             if (medico == null)
             {
                 return NotFound();
