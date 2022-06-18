@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 namespace NETCore_CRUD.Models
 {
@@ -6,5 +7,6 @@ namespace NETCore_CRUD.Models
         [Key]
         public int IdEspecialidad { get; set; }
         public string Descripcion { get; set; }
+        public List<MedicoEspecialidad> MedicoEspecialidad { get; set; }
     }
 }

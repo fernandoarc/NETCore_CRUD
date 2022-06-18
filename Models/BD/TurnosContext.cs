@@ -12,6 +12,7 @@ namespace NETCore_CRUD.Models.BD
         public DbSet<Especialidad> Especialidad { get; set; }
         public DbSet<Paciente> Paciente { get; set; }
         public DbSet<Medico> Medico { get; set; }
+        public DbSet<MedicoEspecialidad> MedicoEspecialidad { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //configuraciones a implementar al momento de crear tabla en el sql server
@@ -75,6 +76,13 @@ namespace NETCore_CRUD.Models.BD
                     .IsRequired()
                     .IsUnicode(false);
             });
+            modelBuilder.Entity<MedicoEspecialidad>().HasKey(me => new {me.IdMedico, me.IdEspecialidad});
+            modelBuilder.Entity<MedicoEspecialidad>().HasOne(x => x.Medico)
+                    .WithMany(p => p.MedicoEspecialidad)
+                    .HasForeignKey(p => p.IdMedico);
+            modelBuilder.Entity<MedicoEspecialidad>().HasOne(x => x.Especialidad)
+                    .WithMany(p => p.MedicoEspecialidad)
+                    .HasForeignKey(p => p.IdEspecialidad);
         }
 
         
