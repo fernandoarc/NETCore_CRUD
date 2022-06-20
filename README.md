@@ -1,6 +1,14 @@
 # NET CORE 3.1 - CRUD
 
 El motivo del presente proyecto de estudio es implementar y desarrollar un CRUD basado en .Net Core, versión 3.1
+## Tecnologías, Librerías y Frameworks a utilizar:
+---
+A continuación se detallan el listado de elementos a utilizar en el presente proyecto:
+
+- .NetCore 3.1
+- Entity Framework Core
+- Razor
+- Materialize
 
 ## Requisitos
 ---
