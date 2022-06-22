@@ -37,5 +37,7 @@ namespace NETCore_CRUD.Models
         [DisplayFormat(DataFormatString="{0:hh:mm tt}", ApplyFormatInEditMode=true)]
         public DateTime HorarioAtencionHasta { get; set; }
         public List<MedicoEspecialidad> MedicoEspecialidad { get; set; }
+
+        public List<Turno> Turno { get; set; }
     }
 }

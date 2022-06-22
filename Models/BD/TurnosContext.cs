@@ -13,6 +13,7 @@ namespace NETCore_CRUD.Models.BD
         public DbSet<Paciente> Paciente { get; set; }
         public DbSet<Medico> Medico { get; set; }
         public DbSet<MedicoEspecialidad> MedicoEspecialidad { get; set; }
+        public DbSet<Turno> Turno { get;set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //configuraciones a implementar al momento de crear tabla en el sql server
@@ -83,6 +84,28 @@ namespace NETCore_CRUD.Models.BD
             modelBuilder.Entity<MedicoEspecialidad>().HasOne(x => x.Especialidad)
                     .WithMany(p => p.MedicoEspecialidad)
                     .HasForeignKey(p => p.IdEspecialidad);
+            modelBuilder.Entity<Turno>(turno => {
+                turno.ToTable("Turno");
+                turno.HasKey(m => m.IdTurno);
+                turno.Property(m => m.IdPaciente)
+                    .IsRequired()
+                    .IsUnicode(false);
+                turno.Property(m => m.IdMedico)
+                    .IsRequired()
+                    .IsUnicode(false);
+                turno.Property(m => m.FechaHoraInicio)
+                    .IsRequired()
+                    .IsUnicode(false);
+                turno.Property(m => m.FechaHoraFin)
+                    .IsRequired()
+                    .IsUnicode(false);
+            });
+            modelBuilder.Entity<Turno>().HasOne(x => x.Paciente)
+                    .WithMany(t => t.Turno)
+                    .HasForeignKey(t => t.IdPaciente);
+            modelBuilder.Entity<Turno>().HasOne(x => x.Medico)
+                    .WithMany(t => t.Turno)
+                    .HasForeignKey(t => t.IdMedico);
         }
 
         

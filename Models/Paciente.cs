@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace NETCore_CRUD.Models
@@ -25,5 +26,7 @@ namespace NETCore_CRUD.Models
         [Required(ErrorMessage="Campo obligatorio")]
         [EmailAddress(ErrorMessage="Debe ingresar un mail válido")]
         public string Email { get; set; }
+
+        public List<Turno> Turno { get; set; }
     }
 }
